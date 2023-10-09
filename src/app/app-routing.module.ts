@@ -1,22 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AdminComponent } from './admin/admin.component';
-import { UserComponent } from './user/user.component';
-import { LoginComponent } from './login/login.component';
-import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { authGuard } from './_auth/auth.guard';
+import { DefaultComponent } from './layouts/default/default.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import * as path from 'path';
+import { PostsComponent } from './modules/posts/posts.component';
 
 const routes: Routes = [
-{path:'home', component:HomeComponent},
-{path:'admin', component:AdminComponent, canActivate:[authGuard], data:{roles:['ROLE_ADMIN']}},
-{path:'user', component:UserComponent, canActivate:[authGuard], data:{roles:['ROLE_USER']}},
-{path:'login', component:LoginComponent},
-{path:'forbidden', component:ForbiddenComponent}
-]
+  {
+    path: '',
+    component: DefaultComponent,
+    children: [
+      {
+        path: '',
+        component: DashboardComponent,
+      },
+      {
+        path: 'posts',
+        component: PostsComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

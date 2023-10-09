@@ -3,10 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'],
+  styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  public toggleSidebar() {
-    $('#sidebar').toggleClass('collapsed');
-  }
+
 }
