@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import * as Highcharts from 'highcharts';
-import HC_exporting from 'highcharts/modules/exporting';
+import { Component, Input, OnInit } from "@angular/core";
+import * as Highcharts from "highcharts";
+import HC_exporting from "highcharts/modules/exporting";
 
 @Component({
-  selector: 'app-widget-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css'],
+  selector: "app-widget-card",
+  templateUrl: "./card.component.html",
+  styleUrls: ["./card.component.css"]
 })
 export class CardComponent implements OnInit {
   @Input() label: string | any;
@@ -14,74 +14,74 @@ export class CardComponent implements OnInit {
 
   highcharts = Highcharts;
   chartOptions = {};
-  @Input() data: [] | any;
+  @Input() data = [];
 
   ngOnInit(): void {
     this.chartOptions = {
       chart: {
-        type: 'area',
+        type: "area",
         backgroundColor: null,
         borderWidth: 0,
         margin: [2, 2, 2, 2],
-        height: 60,
+        height: 60
       },
       title: {
-        text: null,
+        text: null
       },
 
       accessibility: {
         keyboardNavigation: {
           seriesNavigation: {
-            mode: 'serialize',
-          },
-        },
+            mode: "serialize"
+          }
+        }
       },
       tooltip: {
         split: true,
-        outside: true,
+        outside: true
       },
       legend: {
-        enabled: false,
+        enabled: false
       },
       credits: {
-        enabled: false,
+        enabled: false
       },
       exporting: {
-        enabled: false,
+        enabled: false
       },
       xAxis: {
         labels: {
-          enabled: false,
+          enabled: false
         },
         title: {
-          text: null,
+          text: null
         },
         startOnTick: false,
         endOnTick: false,
-        tickOptions: [],
+        tickOptions: []
       },
       yAxis: {
         labels: {
-          enabled: false,
+          enabled: false
         },
         title: {
-          text: null,
+          text: null
         },
         startOnTick: false,
         endOnTick: false,
-        tickOptions: [],
+        tickOptions: []
       },
       series: [
         {
-          data: this.data,
-        },
-      ],
+          data: this.data
+        }
+      ]
     };
 
     HC_exporting(Highcharts);
 
     setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
+      window.dispatchEvent(new Event("resize"));
     }, 300);
   }
 }
